@@ -61,7 +61,7 @@ opts_chunk$set(echo=T,message = F, error = F, warning = F, comment = NA, fig.ali
 library(pacman)
 p_load(dplyr,lubridate)
 library(readr)
-
+library(tidyverse)
 ```
 
 Todos los ejercicios planteados están relacionados con el uso de las librerías **dplyr, tidyr y lubridate**. Familiarízate con el uso del operador **%>%** para facilitar la compresión del código.
@@ -90,20 +90,6 @@ Se pueden descargar ficheros actuales del `logs` usando la librería https://r-h
 
 **Nota**: El siguiente bloque puede tardar en ejecutarse por lo que solo lo ejecutaremos una vez. Después usaremos la selección de registros almacenada en el fichero Rdata.
 
-
-```{r,eval=FALSE}
-# Fuente de datos http://cran-logs.rstudio.com/
-mydf <- read_csv("./data/2024-03-12.Rdata")
-
-set.seed(seed=14032024)
-N<-200000
-I<-sample(1:nrow(mydf),size=N,replace=TRUE)
-mydf<-mydf[I,]
-# Guardamos en formato binario, la primera vez que cargamos
-save(file = './data/2024-03-12.Rdata',list=c('mydf'))
-eval=FALSE
-stringsAsFactors=FALSE
-```
 
 Después de la primera carga poner **eval=FALSE** en el *chunk* anterior para acelerar la ejecución.
 
@@ -135,11 +121,10 @@ glimpse(cran)
 
 4. Elige únicamente las variables `ip_id, package, country`
 ```{r}
-
+cran[, c("ip_id", "package", "country")]
 ```
 5. Elige todas las variables entre `r_arch y country` 
 ```{r}
-
 ```
 5. Puedes usar el signo (-) para no coger una columna determinada. Selecciona todas las columnas menos las que están entre `date y size` 
 ```{r}
