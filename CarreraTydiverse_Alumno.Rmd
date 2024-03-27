@@ -62,6 +62,7 @@ library(pacman)
 p_load(dplyr,lubridate)
 library(readr)
 library(tidyverse)
+library(plotly)
 ```
 
 Todos los ejercicios planteados están relacionados con el uso de las librerías **dplyr, tidyr y lubridate**. Familiarízate con el uso del operador **%>%** para facilitar la compresión del código.
@@ -129,13 +130,14 @@ select(cran, r_arch:country)
 ```
 5. Puedes usar el signo (-) para no coger una columna determinada. Selecciona todas las columnas menos las que están entre `date y size` 
 ```{r}
-
+select(cran, -(date:size))
 
 
 
 ```
 6. Elige aquellos registros en los que se haya descargado el paquete `plotly`, desde un sistema que ejecuta la versión de R 3.5.1
 ```{r}
+subset(cran, package == "plotly" & r_version =="3.5.1")
 
 ```
 6. Elige aquellas descargas realizadas desde España (ES), con versiones de R superiores a la 3.4.0
